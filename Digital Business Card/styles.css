@@ -1,0 +1,35 @@
+body {
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    background-color:  #f5f7fa;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+
+.avatar {
+    width:  150px;
+    height: auto;
+    display: block;
+    float: left;
+}
+
+.business-card {
+    width: 400px;
+    margin: 250px auto 0 auto;
+    padding: 20px;
+    background: pink;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    color: #03C03C;
+    border-bottom: 6px solid  #03C03C;
+    border-radius: 20px;
+    
+}
+
+.border-blue {
+    border: 1px dotted transparent;
+}

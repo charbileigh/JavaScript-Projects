@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+/* Properties for the entire project */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100%;
+    background: linear-gradient(to right,hotpink 50%, #CF9FFF 50%) fixed;
+
+}
+
+.container {
+    background: #fff;
+    padding: 50px;
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 40px;
+    perspective: 300px;
+    -webkit-perspective: 300px;
+    box-shadow: 15px 30px 35px 15px rgba(0, 0, 0, 0.7);
+}
+
+.stats {
+    text-align: right;
+    color: #101020;
+    line-height: 25px;
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.coin {
+    width: 150px;
+    height: 150px;
+    margin: 50px auto;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    position: relative;
+}
+
+.tails {
+    transform: rotateX(180deg);
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.coin img {
+    width: 145px;
+}
+
+.heads, .tails {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+button {
+    width: 120px;
+    padding: 20px 0;
+    border-radius: 18px;
+    cursor: pointer;
+    border: 2.5px solid #424ae0;
+}
+
+#flip-button {
+    background: #CF9FFF;
+    color: #fff;
+    font-size: 16px;
+}
+
+#flip-button:disabled{
+    background-color: pink;
+    color: #101020;
+    border-color: pink;
+}
+
+#reset-button {
+    background: hotpink;
+    color: #fff;
+    font-size: 16px;
+}
+
+/* Keyframe/animation properties for the project */
+
+@keyframes spin-tails{
+    0%{
+        transform: rotateX(0);
+    }
+    100%{
+        transform: rotateX(1980deg);
+    }
+}
+
+@keyframes spin-heads{
+    0%{
+        transform: rotateX(0);
+    }
+    100%{
+        transform: rotateX(2160deg);
+    }
+}
