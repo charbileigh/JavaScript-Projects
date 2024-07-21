@@ -1,0 +1,101 @@
+version: '2.1'
+services:
+  mysql-parking-service-db:
+    image: mysql
+    container_name: parking-reservation-service-mysql
+    restart: on-failure
+    ports:
+      - '3307:3307'
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: parkingreservationDB
+    volumes:
+      - parking-reservation-service-mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-ppassword"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks:
+      - parking-reservation-net
+  mysql-auth-service-db:
+    image: mysql
+    container_name: parking-auth-service-mysql
+    restart: on-failure
+    ports:
+      - '3308:3308'
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: parkingauthserviceDB
+    volumes:
+      - parking-auth-service-mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-ppassword"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks:
+      - parking-reservation-net
+  redis-publisher:
+    image: redis
+    container_name: redis-publisher
+    command: ["redis-server", "--port", "6379"]
+    ports:
+      - "6379:6379"
+    networks:
+      - parking-reservation-net
+  parking-reservation-protobufs:
+    image: parking-reservation-dynamic-protos
+    build: ./parking-reservation-protos
+  parking-email-notification-service-backend:
+    image: parking-email-notification-service-backend
+    container_name: parking-email-notification-service
+    restart: always
+    build: ./parking-email-notification-service
+    depends_on:
+      - redis-publisher
+    networks:
+      - parking-reservation-net
+  parking-reservation-service-backend:
+    image: parking-reservation-service-backend
+    container_name: parking-reservation-service
+    restart: always
+    build: ./parking-reservation-service
+    ports:
+      - '50053:50053'
+    depends_on:
+      mysql-parking-service-db:
+        condition: service_healthy
+    networks:
+      - parking-reservation-net
+  parking-reservation-auth-service-backend:
+    image: parking-reservation-auth-service-backend
+    container_name: parking-reservation-auth-service
+    restart: always
+    build: ./parking-reservation-auth-service
+    ports:
+      - '50054:50054'
+    depends_on:
+      mysql-auth-service-db:
+        condition: service_healthy
+    networks:
+      - parking-reservation-net
+  parking-reservation-api:
+    image: parking-reservation-api
+    container_name: parking-reservation-bff
+    restart: always
+    build: ./parking-reservation-bff
+    ports:
+      - '3000:3000'
+    depends_on:
+      - parking-reservation-service-backend
+      - parking-reservation-auth-service-backend
+    networks:
+      - parking-reservation-net
+
+networks:
+  parking-reservation-net:
+
+volumes:
+  parking-reservation-service-mysql-data:
+  parking-auth-service-mysql-data:

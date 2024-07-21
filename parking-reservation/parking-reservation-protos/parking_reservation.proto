@@ -1,0 +1,144 @@
+syntax = "proto3";
+
+package parking;
+
+service ParkingReservationService {
+  rpc GetVehicle (GetVehicleRequest) returns (GetVehicleResponse);
+  rpc AddVehicle (AddVehicleRequest) returns (AddVehicleResponse);
+  rpc EditVehicle (EditVehicleRequest) returns (EditVehicleResponse);
+  rpc RemoveVehicle (RemoveVehicleRequest) returns (RemoveVehicleResponse);
+
+  rpc GetParkingSpace (ParkingSpaceRequest) returns (ParkingSpaceResponse);
+  rpc GetParkingSpaceList (ParkingSpaceListRequest) returns (ParkingSpaceListResponse);
+  rpc AddParkingSpace (AddParkingSpaceRequest) returns (AddParkingSpaceResponse);
+  rpc EditParkingSpace (EditParkingSpaceRequest) returns (EditParkingSpaceResponse);
+  rpc RemoveParkingSpace (RemoveParkingSpaceRequest) returns (RemoveParkingSpaceResponse);
+
+  rpc ReserveParking (ReserveParkingRequest) returns (ReserveParkingResponse);
+  rpc CancelParkingReservation (CancelParkingReservationRequest) returns (CancelParkingReservationResponse);
+}
+
+// Vehicle Service method definitions
+message GetVehicleRequest {
+  int32 user_id = 1;
+}
+
+message GetVehicleResponse {
+  int32 vehicle_id = 1;
+  int32 user_id = 2;
+  string vehicle_name = 3;
+  string vehicle_license_plate = 4;
+  string created_at = 5;
+  string updated_at = 6;
+}
+
+message AddVehicleRequest {
+  int32 user_id = 1;
+  string vehicle_name = 2;
+  string vehicle_license_plate = 3;
+}
+
+message AddVehicleResponse {
+  string message = 1;
+}
+
+message EditVehicleRequest {
+  int32 user_id = 1;
+  string vehicle_name = 2;
+  string vehicle_license_plate = 3;
+}
+
+message EditVehicleResponse {
+  string message = 1;
+}
+
+message RemoveVehicleRequest {
+  int32 user_id = 1;
+  string vehicle_name = 2;
+}
+
+message RemoveVehicleResponse {
+  string message = 1;
+}
+
+
+// Parking Space Service method definitions
+message ParkingSpace {
+  int32 parking_space_id = 1;
+  string parking_space_type = 2;
+  string building_name = 3;
+  string address = 4;
+  float price = 5;
+  bool is_available = 6;
+}
+
+message ParkingSpaceRequest {
+  int32 parking_space_id = 1;
+}
+
+message ParkingSpaceResponse {
+  ParkingSpace parking_space = 1;
+}
+
+message ParkingSpaceListRequest {
+}
+
+message ParkingSpaceListResponse {
+  repeated ParkingSpace parking_space = 1;
+}
+
+message AddParkingSpaceRequest {
+  string parking_space_type = 1;
+  string building_name = 2;
+  string address = 3;
+  float price = 4;
+  bool is_available = 5;
+}
+
+message AddParkingSpaceResponse {
+  string message = 1;
+}
+
+message EditParkingSpaceRequest {
+  int32 parking_space_id = 1;
+  string parking_space_type = 2;
+  string building_name = 3;
+  string address = 4;
+  float price = 5;
+  bool is_available = 6;
+}
+
+message EditParkingSpaceResponse {
+  string message = 1;
+}
+
+message RemoveParkingSpaceRequest {
+  int32 parking_space_id = 1;
+}
+
+message RemoveParkingSpaceResponse {
+  string message = 1;
+}
+
+
+// Parking Reservation Service method definitions
+message ReserveParkingRequest {
+  int32 parking_space_id = 1;
+  int32 user_id = 2;
+  int32 vehicle_id = 3;
+  string status = 4;
+  string duration = 5;
+}
+
+message ReserveParkingResponse {
+  string message = 1; 
+}
+
+message CancelParkingReservationRequest {
+  int32 parking_space_id = 1;
+  int32 user_id = 2;
+}
+
+message CancelParkingReservationResponse {
+  string message = 1;
+}

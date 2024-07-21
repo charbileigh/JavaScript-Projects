@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+* {
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: radial-gradient(hotpink, #C20030);
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: 20px;
+    padding: 20px 30px;
+    border: 2px solid #000;
+    text-align: center;
+    min-width: 400px;
+    backdrop-filter: blur(200px);
+    -webkit-backdrop-filter: blur(200px);
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.9);
+}
+
+.container i {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+label {
+    text-align: left;
+    font-weight: 500;
+    margin: 10px 0;
+    display: block;
+    font-size: 15px;
+}
+
+input, textarea {
+    width: 100%;
+    border-radius: 10px;
+    padding: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+}
+
+input::placeholder {
+    color: rgb(228, 147, 160);
+
+}
+
+buttons {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    width: 60%;
+    padding: 8px;
+    font-weight: 500;
+    border-radius: 10px;
+    background-color: antiquewhite;
+    border: 2px solid #000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #C20030;
+    color: #fff;
+}

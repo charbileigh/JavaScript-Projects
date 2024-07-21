@@ -1,0 +1,20 @@
+{
+  "name": "parking-reservation-bff",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.9.7",
+    "@grpc/proto-loader": "^0.7.10",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "ioredis": "^5.3.2",
+    "jsonwebtoken": "^9.0.2",
+    "swagger-ui-express": "^5.0.0"
+  }
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styles.css">
+    <title>URL Compressor</title>
+</head>
+<body>
+    <div class="container">
+        <i class="bx bx-link-alt"></i>
+        <h1>URL Compressor</h1>
+        <label for="originalUrl">Enter URL to compress : </label>
+        <input type="text" placeholder="https://youtube.com" id="originalUrl">
+        <div class="buttons">
+            <button id="reload-btn">Reload</button>
+            <button id="compress-btn">Compress</button>
+        </div>
+        <label for="compressedUrl">Compressed URL : </label>
+        <textarea name="" id="compressedUrl"  rows="3" readonly></textarea>
+
+    </div>
+    <script src="app.js"></script>
+    
+</body>
+</html>

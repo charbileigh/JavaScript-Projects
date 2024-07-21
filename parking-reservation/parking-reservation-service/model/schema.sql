@@ -1,0 +1,28 @@
+CREATE TABLE IF NOT EXISTS ParkingSpace (
+   parking_space_id INT PRIMARY KEY AUTO_INCREMENT,
+   parking_space_type VARCHAR(255) NOT NULL,
+   building_name TEXT NOT NULL,
+   address TEXT NOT NULL,
+   price DECIMAL(10, 2) NOT NULL,
+   is_available BOOLEAN
+);
+
+CREATE TABLE IF NOT EXISTS Vehicle (
+   vehicle_id INT PRIMARY KEY AUTO_INCREMENT,
+   user_id INT NOT NULL,
+   vehicle_name VARCHAR(255) NOT NULL,
+   vehicle_license_plate VARCHAR(255) NOT NULL,
+   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS ParkingReservation (
+   parking_reservation_id INT PRIMARY KEY AUTO_INCREMENT,
+   parking_space_id INT NOT NULL,
+   user_id INT NOT NULL,
+   vehicle_id INT NOT NULL,
+   status VARCHAR(255) NOT NULL,
+   duration VARCHAR(255) NOT NULL,
+   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
